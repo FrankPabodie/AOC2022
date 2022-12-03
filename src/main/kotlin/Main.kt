@@ -2,7 +2,7 @@ import java.io.File
 import kotlin.system.measureTimeMillis
 
 fun main() {
-    val puzzle = Day02()
+    val puzzle = Day03()
     val testInput = readInput("${puzzle.name}_test")
     var result: Any
     println(
