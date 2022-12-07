@@ -1,6 +1,6 @@
 class Day05:puzzle<Int>("Day05",0,0) {
     override fun part1(input: Input): Int {
-        val
+        val  Stacks: Stack = input.
         return 0
     }
 
