@@ -1,11 +1,30 @@
-import java.awt.CardLayout
-import java.text.BreakIterator
-
-class Day05:puzzle<Int>("Day05",0,0) {
-    override fun part1(input: Input): Int    {
+class Day05:puzzle<String>("Day05","CMZ","fas") {
+    override fun part1(input: Input): String {
         var stacks = createStacks(input)
-        print(stacks)
-        return 0
+        val listOfMovesTrans = input.dropWhile { it != "" }.filter { it.isNotBlank() }
+            .map { command -> command.split("move ", " from ", " to ").filter { it.isNotBlank() } }
+        listOfMovesTrans.forEach {
+            println(it)
+            stacks = moveFromTo(stacks, it[0].toInt(), it[1].toInt() -1 , it[2].toInt() -1)
+        }
+        return stacks.map { it.first() }.joinToString()
+    }
+
+    fun moveFromTo(stacks: List<MutableList<Char>>, amount: Int, from : Int, to: Int): List<MutableList<Char>> {
+        println(stacks)
+        var stackNew = stacks.toMutableList()
+        for (i in 1..amount) {
+            val charFrom = stackNew[from].removeFirstOrNull()
+            if (charFrom != null) {
+                stackNew = stackNew.map{
+                    if(stackNew.indexOf(it) == to) { print("here")
+                        (mutableListOf<Char>(charFrom) + stackNew[to]).toMutableList()}
+                else {it}
+                }.toMutableList()
+            }
+        }
+        println(stacks)
+        return stacks
     }
 
     fun createStacks(input: List<String>): List<MutableList<Char>>{
@@ -22,8 +41,8 @@ class Day05:puzzle<Int>("Day05",0,0) {
     }
 
 
-    override fun part2(input: Input): Int {
-        return 0
+    override fun part2(input: Input): String{
+        return " fas"
     }
 
 }
